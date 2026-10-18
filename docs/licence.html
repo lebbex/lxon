@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>LXON Licence Développeur</title>
+	<link rel="icon" href="/logo.png" type="image/x-icon">
+	<link rel="stylesheet" href="https://unpkg.com/lenis@1.3.23/dist/lenis.css">
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400&display=swap">
+	<link rel="stylesheet" href="/ressources/styles.css">
+	<link rel="stylesheet" href="/style-home.css">
+	<link rel="stylesheet" href="/ressources/license.css">
+</head>
+
+<body>
+
+	<canvas id="noise-canvas"></canvas>
+
+	<div id="scroll-container">
+		<main>
+
+			<section class="license-head">
+				<div class="eyebrow">LXON™</div>
+				<h1>Licence Développeur</h1>
+			</section>
+
+			<section class="license-body">
+				<div class="license-text">
+					<div class="license-section" id="definitions">
+						<h2>Définitions</h2>
+						<p>Aux fins de la présente licence, les termes suivants ont le sens qui leur est attribué
+							ci-dessous :</p>
+						<p><b>« Nous »</b> désigne la société, qu'elle soit ou non déjà constituée en personne morale,
+							ainsi que ses successeurs et cessionnaires. Nous détenons les droits d'auteur sur la
+							spécification LXON, sa documentation et les Outils Officiels, ainsi que les marques de
+							commerce LXON™ et Lebbex™ et le logo LXON, et Nous les publions et les distribuons. Nous
+							sommes le concédant aux termes de la présente entente et Nous accordons la licence qui y est
+							énoncée.</p>
+						<p><b>« Vous »</b> désigne la personne physique ou l'entité qui accepte la présente entente à
+							l'égard d'un Logiciel Dépendant de Votre choix.</p>
+						<p><b>« LXON »</b> désigne le format de sérialisation, sa spécification et sa syntaxe, tels que
+							publiés par Nous.</p>
+						<p><b>« Données LXON »</b> désigne des données sérialisées mises en forme selon les
+							spécifications et la syntaxe de LXON.</p>
+						<p><b>« Outil LXON »</b> désigne un analyseur syntaxique (parser), un convertisseur en chaîne de
+							caractères (stringifier), une bibliothèque, un éditeur, une application Web ou tout autre
+							logiciel dont la fonction principale, appréciée raisonnablement, est de donner à toute
+							personne ou à tout programme la capacité de lire, d'écrire ou de modifier des Données LXON
+							selon le choix de cette personne ou de ce programme.</p>
+						<p><b>« Outil Officiel »</b> désigne un Outil LXON publié par Nous.</p>
+						<p><b>« Outil Certifié »</b> désigne un Outil LXON développé ou publié par des entités tierces
+							et certifié par Nous. La liste de tous les Outils LXON certifiés se trouve à l'adresse
+							<a href="https://lxon.lebbex.com/certified">lxon.lebbex.com/certified</a>.
+						</p>
+						<p><b>« Outil Non Certifié »</b> désigne un Outil LXON développé ou publié par des entités
+							tierces qui n'a pas été certifié par Nous.</p>
+						<p><b>« Logiciel Dépendant »</b> désigne le logiciel auquel Vous décidez d'appliquer la présente
+							licence. Vous devez être propriétaire du logiciel, et celui-ci ne doit pas être un Outil
+							LXON.</p>
+						<p><b>« Fichier Généré »</b> désigne un fichier que le Logiciel Dépendant produit, écrit ou
+							modifie, peu importe qui a déclenché l'action. Cela comprend les fichiers produits
+							automatiquement, les fichiers produits à la demande d'un utilisateur ou d'un tiers, ainsi que
+							les fichiers qu'un utilisateur ou un tiers crée, enregistre ou modifie à l'aide des
+							fonctionnalités propres au Logiciel Dépendant. Un fichier cesse d'être un Fichier Généré s'il
+							est par la suite altéré par des moyens autres que le Logiciel Dépendant, ou endommagé par des
+							événements échappant au contrôle du Logiciel Dépendant. Comme tout autre fichier, il redevient
+							un Fichier Généré si le Logiciel Dépendant l'écrit ou le modifie par la suite.</p>
+						<p><b>« Modifié »</b> désigne tout changement apporté au code source d'un Logiciel Dépendant, ou
+							à la logique de programme de sa forme compilée, y compris l'ajout, le retrait ou l'altération
+							de code. « Modification » a un sens correspondant. Ne constituent pas des Modifications : les
+							changements apportés aux fichiers de configuration, aux styles visuels ou aux thèmes, aux
+							ressources et éléments (assets), tels que les images, l'audio, le texte et les traductions,
+							au contenu ou aux données, et à la documentation; la reconstruction ou la recompilation d'un
+							code source inchangé avec les mêmes versions des Outils Officiels; et les changements
+							apportés par les utilisateurs finaux à leurs propres copies.</p>
+						<p><b>« Produit Diffusé »</b> désigne un Logiciel Dépendant, ou toute version de celui-ci, qui a
+							été mis à la disposition du public ou livré à des clients. Dès qu'un Produit Diffusé est
+							Modifié et que le résultat est mis à la disposition du public ou livré, ce résultat constitue
+							un nouveau Produit Diffusé, et la date à laquelle il est mis à la disposition du public ou
+							livré pour la première fois est sa date de diffusion.</p>
+					</div>
+
+					<div class="license-section" id="grant">
+						<h2><span>1.</span> Octroi de licence</h2>
+						<p>Nous Vous accordons une licence mondiale, non exclusive, non transférable et libre de
+							redevances d'utilisation des Outils Officiels, des éléments visés par une marque de commerce
+							autorisés et des éléments protégés par le droit d'auteur autorisés, dans un Logiciel
+							Dépendant, sous réserve des présentes conditions. Tous les droits non expressément accordés
+							sont réservés par Nous.</p>
+					</div>
+
+					<div class="license-section" id="information-requests">
+						<h2><span>2.</span> Demandes de renseignements</h2>
+						<p><b>2.1.</b> Si Nous Vous demandons par écrit quels Outils LXON (officiels, certifiés ou non
+							certifiés) Vous utilisez dans le Logiciel Dépendant, Vous devez répondre dans les 14 jours
+							civils suivant la réception de la demande en fournissant une liste de ces outils.</p>
+						<p><b>2.2.</b> Si Nous Vous demandons par écrit quelles données le Logiciel Dépendant analyse ou
+							sérialise avec LXON, Vous devez répondre dans les 14 jours civils suivant la réception de la
+							demande en fournissant une description de la nature de ces données. Une description suffit,
+							et Vous n'avez pas à fournir de données réelles ni d'échantillons.</p>
+						<p><b>2.3.</b> Nous utiliserons Votre réponse uniquement pour vérifier la conformité à la
+							présente entente et la traiterons de façon confidentielle.</p>
+						<p><b>2.4.</b> Nous n'enverrons de demandes en vertu du présent article qu'à partir de l'adresse
+							de contact officielle (actuellement <a href="mailto:lxon@lebbex.com">lxon@lebbex.com</a>), ou
+							d'une autre adresse que Nous publions à l'adresse <a
+								href="https://lxon.lebbex.com">lxon.lebbex.com</a>. Nous les enverrons aux coordonnées
+							indiquées dans Votre projet, Votre dépôt ou Votre paquet, ou à toute adresse que Vous avez
+							utilisée pour Nous contacter, et les 14 jours commencent à courir lorsque la demande parvient
+							à cette adresse. Une demande provenant de tout autre expéditeur n'est pas une demande au sens
+							du présent article, et Vous n'avez pas à y répondre.</p>
+						<p><b>2.5.</b> Vous pouvez ignorer une demande qui, appréciée raisonnablement, est abusive ou
+							constitue du pourriel, par exemple une demande répétée sans motif nouveau, envoyée en masse
+							ou envoyée dans le but de Vous harceler.</p>
+						<p><b>2.6.</b> Vos réponses en vertu du présent article doivent être véridiques et, à Votre
+							connaissance, exactes et complètes en réponse à ce qui a été demandé.</p>
+					</div>
+
+					<div class="license-section" id="no-modification">
+						<h2><span>3.</span> Aucune modification</h2>
+						<p>Les Outils Officiels sont fournis tels quels. Vous ne pouvez pas modifier, adapter, optimiser,
+							traduire, porter vers d'autres plateformes ou décompiler les Outils Officiels ou toute partie
+							de ceux-ci, ni en créer des œuvres dérivées. Vous ne pouvez les redistribuer que sous leur
+							forme non modifiée au sein du Logiciel Dépendant, accompagnés de la présente entente et de
+							tous les avis intacts.</p>
+					</div>
+
+					<div class="license-section" id="eula">
+						<h2><span>4.</span> Exigences du CLUF</h2>
+						<p><b>4.1. Exigence.</b> Si Vous mettez un Logiciel Dépendant à la disposition d'utilisateurs
+							finaux, Vous devez lier chaque utilisateur final par un contrat de licence d'utilisateur
+							final, des conditions d'utilisation ou un document équivalent (le « CLUF ») qui contient, au
+							minimum, les dispositions des articles 4.2 à 4.7. Si le Logiciel Dépendant n'a pas de CLUF,
+							Vous devez en créer un. L'utilisateur final doit accepter le CLUF avant ou lors de la
+							première utilisation du Logiciel Dépendant, par un moyen valide en vertu du droit applicable
+							(par exemple, une acceptation par clic). Votre CLUF peut contenir des conditions
+							supplémentaires, mais il ne peut ni contredire ni affaiblir les dispositions exigées par le
+							présent article.</p>
+						<p><b>4.2. Restrictions imposées à l'utilisateur final à l'égard des Outils Officiels.</b> Dans
+							la mesure où le Logiciel Dépendant contient un Outil Officiel ou est distribué avec un tel
+							outil, Votre CLUF doit interdire à l'utilisateur final :</p>
+						<p class="sub">(a) de modifier, d'adapter, d'optimiser, de traduire, de porter vers d'autres
+							plateformes l'Outil Officiel ou toute partie de celui-ci, ou d'en créer des œuvres dérivées
+							;</p>
+						<p class="sub">(b) de décompiler, de désassembler, de rétroconcevoir l'Outil Officiel, ou de
+							tenter autrement d'en lire ou d'en déduire le code source, la logique interne ou la structure
+							interne ;
+						</p>
+						<p class="sub">(c) d'extraire, de copier ou de séparer l'Outil Officiel du Logiciel Dépendant, ou
+							de l'utiliser en dehors du Logiciel Dépendant ;</p>
+						<p class="sub">(d) de redistribuer l'Outil Officiel, de le concéder en sous-licence, de le louer
+							ou de le mettre autrement à la disposition de tout tiers, sauf dans le cadre d'une copie non
+							modifiée du Logiciel Dépendant ; et</p>
+						<p class="sub">(e) de retirer, d'altérer ou d'obscurcir tout avis de droit d'auteur, de marque de
+							commerce ou de licence, tel qu'exigé à l'article 5.</p>
+						<p>Le présent article n'exige pas que Vous interdisiez à un utilisateur final de lire, d'écrire ou
+							de modifier des Données LXON, ou des Fichiers Générés, au moyen des fonctionnalités propres au
+							Logiciel Dépendant, ni de faire quoi que ce soit au Logiciel Dépendant qui n'implique pas les
+							Outils Officiels. Votre CLUF peut préciser que ces restrictions ne s'appliquent pas dans la
+							mesure où le droit applicable l'interdit expressément.</p>
+						<p><b>4.3. Reconnaissance de la propriété de tiers.</b> Si le Logiciel Dépendant comprend,
+							affiche ou est distribué avec l'un des éléments suivants, Votre CLUF doit énumérer chacun
+							d'eux et indiquer qu'il appartient à son propriétaire respectif, que l'utilisateur final
+							n'acquiert, par le CLUF, aucun droit de propriété ni aucune licence à son égard, et que
+							LXON™ est une marque de commerce de Lebbex™ :</p>
+						<p class="sub">(a) les noms ou marques de commerce LXON™ ou Lebbex™ ;</p>
+						<p class="sub">(b) le logo LXON ;</p>
+						<p class="sub">(c) tout Outil Officiel ; et</p>
+						<p class="sub">(d) toute partie de la spécification ou de la documentation LXON.</p>
+						<p>La liste doit être exacte et tenue à jour. Cela ne remplace pas l'avis exigé par
+							l'article 5.1.</p>
+						<p><b>4.4. Amendement du CLUF.</b> Votre CLUF doit Vous réserver le droit d'en amender les
+							dispositions relatives aux Outils Officiels, aux marques LXON™ et Lebbex™ et aux éléments
+							énumérés à l'article 4.3, afin que Vous puissiez les rendre conformes à toute version de la
+							présente entente qui Vous est applicable. Votre CLUF doit Vous permettre d'appliquer un tel
+							amendement soit (a) uniquement aux Produits Diffusés mis à disposition après l'amendement,
+							soit (b) à tous les Produits Diffusés, y compris ceux déjà mis à disposition, à Votre choix.
+							Votre CLUF doit également prévoir que l'utilisateur final qui n'accepte pas un amendement
+							doit cesser d'utiliser le Produit Diffusé auquel il s'applique. Vous devez donner aux
+							utilisateurs finaux un préavis raisonnable des amendements, et Vous demeurez soumis aux
+							règles impératives qui régissent l'amendement des contrats de consommation. Le présent
+							article n'élargit pas Vos droits en vertu de l'article 12; Vous ne pouvez appliquer un
+							amendement que dans la mesure où Vous êtes lié par la version correspondante de la présente
+							entente, ou l'avez adoptée.</p>
+						<p><b>4.5. Exclusions de garantie applicables aux utilisateurs finaux.</b> Votre CLUF doit
+							indiquer que les Outils Officiels sont fournis « tels quels », sans garantie d'aucune sorte,
+							et que Nous n'avons aucune responsabilité envers l'utilisateur final relativement aux Outils
+							Officiels, dans chaque cas dans toute la mesure permise par la loi et en des termes au moins
+							aussi protecteurs pour Nous que les articles 10 et 11.</p>
+						<p><b>4.6. Tiers bénéficiaire.</b> Votre CLUF doit indiquer que Nous sommes un tiers bénéficiaire
+							prévu des dispositions de Votre CLUF exigées par les articles 4.2, 4.3 et 4.5 de la présente
+							entente et que Nous pouvons les faire valoir directement contre l'utilisateur final.</p>
+						<p><b>4.7. Application et registres.</b> Vous devez prendre des mesures raisonnables pour faire
+							respecter les dispositions exigées par le présent article, et Vous devez Nous aviser
+							promptement si Vous apprenez qu'un utilisateur final y a contrevenu de façon importante ou
+							continue. Vous devez conserver une copie datée de chaque version de Votre CLUF, à titre de
+							preuve aux fins de l'article 12.4, et Nous en remettre une copie sur demande raisonnable.</p>
+						<p><b>4.8. Omission d'inclure les dispositions exigées.</b> Un Logiciel Dépendant distribué sans
+							CLUF conforme au présent article constitue un manquement à la présente entente, et l'article
+							9 s'applique.</p>
+					</div>
+
+					<div class="license-section" id="branding">
+						<h2><span>5.</span> Protection de la marque</h2>
+						<p><b>5.1.</b> Le Logiciel Dépendant peut utiliser les noms « LXON », « Lxon », « lxon »,
+							« LEBBEX » et « Lebbex » (avec ou sans le symbole ™ ajouté à la fin) à titre descriptif,
+							pourvu que le contexte fourni n'amène pas le consommateur à croire qu'un partenariat officiel
+							existe entre LXON™ et/ou Lebbex™, d'une part, et Vous ou le Logiciel Dépendant, d'autre part.
+							Vous devez également indiquer clairement que LXON™ est une marque de commerce de Lebbex™, à
+							un endroit facilement accessible, visible et évident pour le lecteur.</p>
+						<p><b>5.2.</b> Le Logiciel Dépendant peut utiliser le nom « LXON », « Lxon » ou « lxon » (sans le
+							symbole ™) pourvu que « LXON™ » ait été raisonnablement vu par le consommateur au préalable
+							ou soit visible en même temps.</p>
+						<p><b>5.3.</b> Le Logiciel Dépendant peut utiliser le nom « LEBBEX » ou « Lebbex » (sans le
+							symbole ™) pourvu que « LEBBEX™ » ou « Lebbex™ » ait été raisonnablement vu par le
+							consommateur au préalable ou soit visible en même temps.</p>
+						<p><b>5.4.</b> Le Logiciel Dépendant ne peut utiliser le nom « LEBBEX » ou « Lebbex » (avec ou
+							sans le symbole ™ ajouté à la fin) que dans le seul but de Nous identifier comme l'éditeur et
+							le titulaire de la marque de commerce LXON.</p>
+						<p><b>5.5.</b> Le Logiciel Dépendant peut utiliser le logo LXON non modifié disponible à
+							l'adresse
+							<a href="https://lxon.lebbex.com/logo.png" target="blank">lxon.lebbex.com/logo.png</a>
+							pourvu que le contexte fourni ne tente pas de détourner l'usage du logo, d'en changer l'image
+							de marque, d'en amoindrir ou d'en modifier autrement la signification et la propriété.
+						</p>
+						<p><b>5.6.</b> Vous ne pouvez pas utiliser « LXON », « Lebbex » ou des noms semblables au point
+							de prêter à confusion dans le nom d'un produit, d'une entreprise, d'un domaine, d'un paquet
+							ou d'un dépôt. Les références descriptives, telles que « fonctionne avec LXON™ », faites
+							conformément au présent article, sont permises.</p>
+					</div>
+
+					<div class="license-section" id="parsing">
+						<h2><span>6.</span> Analyse permise</h2>
+						<p><b>6.1.</b> Vous ne pouvez utiliser les Outils Officiels que pour analyser des données que
+							Vous avez l'autorisation d'analyser. Cela comprend notamment :</p>
+						<ul>
+							<li>les API publiques ;</li>
+							<li>les API privées auxquelles Vous avez l'autorisation d'accéder ;</li>
+							<li>les fichiers créés pour être lus par des logiciels externes ;</li>
+							<li>les fichiers auxquels Vous avez l'autorisation d'accéder.</li>
+						</ul>
+						<p><b>6.2.</b> Vous ne pouvez pas utiliser les Outils Officiels pour analyser des données qui
+							n'étaient pas destinées à être lues par des analyseurs syntaxiques externes et non
+							autorisés.</p>
+						<p><b>6.3.</b> En cas de doute raisonnable quant à savoir si Vous êtes autorisé à analyser un
+							ensemble de données donné, Vous devez présumer que Vous n'y êtes pas autorisé et Vous
+							abstenir de l'analyser, tant que Vous n'avez pas obtenu l'autorisation expresse du
+							propriétaire des données ou de la personne qui en a légitimement le contrôle. Lorsque Vous
+							êtes ce propriétaire ou cette personne, Vous êtes réputé autorisé.</p>
+					</div>
+
+					<div class="license-section" id="serialization">
+						<h2><span>7.</span> Sérialisation permise</h2>
+						<p><b>7.1.</b> Vous ne pouvez pas utiliser les Outils Officiels pour sérialiser des données
+							auxquelles Vous n'avez pas l'autorisation d'accéder ou que Vous n'avez pas l'autorisation de
+							copier. Cela comprend, par exemple, les lectures de la mémoire interne d'une autre
+							application.</p>
+						<p><b>7.2.</b> Cette restriction s'applique même si les données transitent par un ou plusieurs
+							formats intermédiaires avant ou après LXON. LXON ne peut être utilisé comme étape d'un
+							processus qui sérialise des données auxquelles Vous n'avez pas droit.</p>
+					</div>
+
+					<div class="license-section" id="file-extension">
+						<h2><span>8.</span> Extension des Fichiers Générés</h2>
+						<p><b>8.1.</b> Un Logiciel Dépendant ne doit pas donner l'extension « .lxon », sous quelque casse
+							que ce soit, à un Fichier Généré, à moins que le fichier ne contienne que des Données LXON
+							que les Outils Officiels peuvent analyser tels quels, sans modification.</p>
+						<p><b>8.2.</b> Un Fichier Généré qui porte l'extension « .lxon » mais qui ne peut être analysé en
+							raison d'un défaut involontaire du Logiciel Dépendant n'enfreint pas l'article 8.1 au moment
+							où cela se produit. Dès que Vous avez Connaissance (au sens de l'article 9.2(a)) du défaut,
+							l'article 9.6 s'applique.</p>
+						<p><b>8.3.</b> Le changement de nom d'un Fichier Généré après son écriture ne Vous rend pas
+							responsable en vertu du présent article, à moins que le changement de nom n'ait été effectué
+							par le Logiciel Dépendant ou par son intermédiaire.</p>
+					</div>
+
+					<div class="license-section" id="enforcement">
+						<h2><span>9.</span> Application et recours</h2>
+						<p><b>9.1. Application équitable.</b> Nous avons l'intention de faire respecter la présente
+							entente de manière équitable et proportionnée à la gravité et à l'intention du manquement.
+						</p>
+
+						<p><b>9.2. Termes utilisés dans le présent article.</b></p>
+						<p class="sub">(a) Vous avez <b>Connaissance</b> d'un manquement lorsque Nous Vous en avisons par
+							écrit en le décrivant, ou lorsque Vous l'apprenez autrement, y compris parce que quelqu'un
+							d'autre Vous le signale ou que Vous le découvrez Vous-même. Les avis peuvent être envoyés aux
+							coordonnées indiquées dans Votre projet, Votre dépôt ou Votre paquet, ou à toute adresse que
+							Vous avez utilisée pour Nous contacter. Nous ferons des efforts raisonnables pour Vous
+							aviser, mais Notre défaut de le faire ne retarde pas le moment où Vous prenez Connaissance du
+							manquement.</p>
+						<p class="sub">(b) La <b>Période de Correction</b> est de 7 jours civils (en comptant les fins de
+							semaine et les jours fériés) à compter du moment où Vous prenez Connaissance du manquement.
+							Si la correction ne peut raisonnablement être effectuée dans ce délai, et que la
+							prolongation du délai ne causerait aucun préjudice supplémentaire à Nous ou à un tiers, la
+							Période de Correction est prolongée du délai additionnel raisonnablement nécessaire. Si Vous
+							avez pris Connaissance du manquement par Notre avis écrit, Vous devez Nous demander la
+							prolongation avant la fin de la Période de Correction, en en expliquant les raisons, et Nous
+							ne la refuserons pas de façon déraisonnable. Autrement, Vous pouvez Vous prévaloir de la
+							prolongation selon Votre propre jugement de bonne foi, sans Nous la demander. Une
+							prolongation qui n'était pas raisonnable ne prolonge pas la Période de Correction, et le
+							manquement est traité comme n'ayant pas été corrigé à temps.</p>
+						<p class="sub">(c) Un manquement constitue un <b>Manquement Délibéré</b> s'il a été commis
+							intentionnellement ou avec peu ou pas d'efforts pour respecter la présente entente. Nous en
+							jugeons de façon raisonnable et de bonne foi, d'après la preuve disponible. Vous pouvez le
+							contester au moyen d'éléments de preuve tels que des documents datés, et un tribunal a le
+							dernier mot.</p>
+
+						<p><b>9.3. Manquements à l'article 2 (demandes de renseignements).</b></p>
+						<p class="sub">(a) <i>Absence de réponse.</i> Si Vous ne répondez pas à une demande faite en vertu
+							de l'article 2 dans les 14 jours civils suivant sa réception, Nous pouvons révoquer Votre
+							licence à l'égard du Logiciel Dépendant. Nous Vous en aviserons par courriel, en indiquant le
+							motif, et la révocation prend effet au moment où Nous envoyons ce courriel. Une demande que
+							Vous avez raisonnablement et de bonne foi ignorée en vertu de l'article 2.5 n'entre pas en
+							ligne de compte.</p>
+						<p class="sub">(b) <i>Réexamen.</i> Si Vous expliquez pourquoi Votre réponse était tardive, Nous
+							examinerons Votre explication de bonne foi, et Nous pouvons retirer la révocation si Nous
+							sommes convaincus.</p>
+						<p class="sub">(c) <i>Effet de la révocation.</i> Le Logiciel Dépendant ne peut plus utiliser les
+							éléments fournis en vertu de la présente licence. Aucun Produit Diffusé qui utilise ces
+							éléments ne peut être mis à disposition après la révocation, et rien de ce qui est en cours
+							de développement ne peut être diffusé avec ces éléments. Les Produits Diffusés mis à
+							disposition avant la révocation peuvent demeurer disponibles tels quels.</p>
+						<p class="sub">(d) <i>Fausses réponses.</i> Une réponse que Vous savez fausse ou trompeuse
+							constitue un Manquement Délibéré et un manquement important à la présente entente, et peut
+							constituer une déclaration frauduleuse au regard du droit applicable. Nous pouvons révoquer
+							Votre licence par courriel, avec l'effet décrit au paragraphe (c), sans attendre les 7 jours
+							visés au paragraphe (a), et Nous réservons tous les autres droits et recours que la loi Nous
+							offre.</p>
+
+						<p><b>9.4. Manquements aux articles 3, 4 et 5.</b></p>
+						<p class="sub">(a) <i>Manquement Délibéré.</i> Votre licence prend fin immédiatement à l'égard du
+							Logiciel Dépendant dans son ensemble, ce qui couvre chaque Produit Diffusé, passé ou futur,
+							et tout ce qui en est encore en cours de développement. Tous les Produits Diffusés qui
+							utilisent des éléments fournis en vertu de la présente licence doivent être retirés de
+							l'accès du public, et Vous devez déployer le maximum d'efforts raisonnables pour empêcher
+							qu'ils ne se propagent davantage.</p>
+						<p class="sub">(b) <i>Tout autre manquement.</i> Chaque Produit Diffusé qui contrevient à ces
+							articles, et tout Logiciel Dépendant en cours de développement qui y contrevient, n'est pas
+							couvert par la licence tant que le manquement n'y a pas été corrigé. Les Produits Diffusés
+							qui y contreviennent doivent être retirés de l'accès du public, et Vous devez déployer le
+							maximum d'efforts raisonnables pour empêcher qu'ils ne se propagent davantage. Un Produit
+							Diffusé corrigé peut être mis à disposition en remplacement. Les Produits Diffusés
+							ultérieurs qui sont conformes peuvent continuer d'utiliser la présente licence, mais un
+							Produit Diffusé ultérieur qui contrevient à nouveau est, immédiatement, non couvert par la
+							licence.</p>
+
+						<p><b>9.5. Manquements aux articles 6 et 7 (analyse et sérialisation).</b></p>
+						<p class="sub">(a) Un manquement involontaire doit être corrigé dans la Période de Correction.
+							Pour tous les manquements non corrigés dans ce délai, les conséquences prévues au paragraphe
+							(b) s'appliquent.</p>
+						<p class="sub">(b) S'il est raisonnablement soupçonné que le Logiciel Dépendant fonctionne tel que
+							prévu pour analyser ou sérialiser des données que Vous n'êtes pas autorisé à analyser ou à
+							sérialiser, Votre licence est automatiquement révoquée à l'égard de chaque Produit Diffusé
+							(et de tout Logiciel Dépendant en cours de développement) qui contrevient à ces articles, et
+							ceux-ci ne peuvent plus utiliser les éléments fournis en vertu de la présente licence. Nous
+							Vous communiquerons Nos motifs lorsque Nous pouvons raisonnablement le faire. Les Produits
+							Diffusés ultérieurs qui ne contreviennent plus à ces articles peuvent continuer d'utiliser
+							la présente licence.</p>
+						<p class="sub">(c) Un manquement de même nature (analyse ou sérialisation des mêmes données) dans
+							tout Produit Diffusé ultérieur ne bénéficie d'aucune Période de Correction. Il constitue un
+							manquement à la présente entente dès le moment où il est introduit en cours de développement,
+							ainsi que pendant et après la diffusion de tout Produit Diffusé qui le contient, et les
+							conséquences prévues au paragraphe (b) s'appliquent immédiatement à ce Produit Diffusé.</p>
+
+						<p><b>9.6. Manquements à l'article 8 (extension de fichier).</b></p>
+						<p class="sub">(a) Une fois que Vous avez Connaissance d'un manquement à l'article 8, Vous
+							n'avez à le corriger que dans le prochain Produit Diffusé que Vous mettez à disposition. Si
+							aucun autre Produit Diffusé n'est mis à disposition, aucune correction n'est requise.</p>
+						<p class="sub">(b) Un Produit Diffusé mis à disposition dans les 7 jours civils suivant la date à
+							laquelle Vous avez pris Connaissance du manquement est acceptable sans la correction. Tout
+							Produit Diffusé mis à disposition après ces 7 jours doit comprendre la correction, faute de
+							quoi sa mise à disposition constitue un manquement à la présente entente.</p>
+						<p class="sub">(c) Un Produit Diffusé mis à disposition après ces 7 jours sans la correction est
+							acceptable s'il n'existe que pour livrer des correctifs de sécurité urgents et ne contient
+							rien d'autre.</p>
+						<p class="sub">(d) Un Produit Diffusé mis à disposition après ces 7 jours sans la correction,
+							autre que celui visé au paragraphe (c), n'est pas couvert par la licence. Il doit être retiré
+							immédiatement de l'accès du public, et Vous devez déployer le maximum d'efforts raisonnables
+							pour empêcher qu'il ne se propage davantage. Un Produit Diffusé corrigé peut être mis à
+							disposition en remplacement. Votre licence à l'égard des Produits Diffusés mis à disposition
+							avant celui-ci n'est pas touchée.</p>
+
+						<p><b>9.7. Manquement persistant.</b></p>
+						<p class="sub">(a) Si, après avoir pris Connaissance d'un manquement, Vous poursuivez ou répétez
+							un manquement de même nature, y compris en maintenant disponible un Produit Diffusé que le
+							présent article 9 Vous oblige à retirer, Nous pouvons résilier Votre licence à l'égard du
+							Logiciel Dépendant dans son ensemble par avis écrit. Mettre à disposition un Produit Diffusé
+							dans les 7 jours accordés par l'article 9.6(b), ou un Produit Diffusé qui est visé par
+							l'article 9.6(c), ne constitue ni une poursuite ni une répétition.</p>
+						<p class="sub">(b) Votre licence prend fin à la date indiquée dans l'avis, qui peut être la date
+							de son envoi. La résiliation couvre chaque Produit Diffusé, passé ou futur, et tout ce qui
+							est encore en cours de développement du Logiciel Dépendant. Votre licence n'est pas résiliée
+							tant que Nous ne Vous en avons pas avisé.
+						</p>
+						<p class="sub">(c) Après la résiliation, Vous devez cesser d'utiliser les éléments fournis en
+							vertu de la présente licence, retirer de l'accès du public tous les Produits Diffusés qui
+							les utilisent, et déployer le maximum d'efforts raisonnables pour empêcher qu'ils ne se
+							propagent davantage.</p>
+						<p class="sub">(d) Notre avis doit préciser le manquement et expliquer pourquoi Nous le
+							considérons comme persistant. Nous n'exercerons ce droit que lorsque Vous aurez eu une
+							possibilité réelle de corriger le manquement, et non pour une erreur isolée commise de bonne
+							foi.</p>
+
+						<p><b>9.8. Dommages-intérêts et indemnisation.</b> Vous êtes responsable des pertes réelles que
+							Votre manquement cause directement. Nous ne réclamerons pas de dommages-intérêts punitifs ni
+							exagérés, et Nous prendrons des mesures raisonnables pour limiter Nos pertes. Vous convenez
+							également de Nous indemniser et de Nous tenir indemnes à l'égard des réclamations de tiers
+							découlant de Votre utilisation de LXON ou des Outils Officiels en contravention de la
+							présente entente. Par exemple, si Vous utilisez les Outils Officiels pour créer quelque chose
+							qui contourne une restriction dans une autre application, Vous êtes responsable du préjudice
+							qui en résulte pour le propriétaire de cette application.</p>
+						<p><b>9.9. Injonction.</b> Nous ne demanderons à un tribunal de Vous ordonner de cesser (une
+							injonction) que lorsque Vous êtes en situation de Manquement Délibéré, que Votre licence a
+							pris fin, ou que Vous poursuivez un manquement après en avoir pris Connaissance, et non
+							lorsque la correction du manquement ou l'indemnisation de Nos pertes réelles suffirait.</p>
+						<p><b>9.10. Survie.</b> Les articles qui, de par leur nature, devraient survivre à la résiliation
+							y survivront.
+						</p>
+					</div>
+
+					<div class="license-section" id="disclaimer">
+						<h2><span>10.</span> Exclusion de garantie</h2>
+						<p>LXON et les Outils Officiels sont fournis « tels quels » et « selon leur disponibilité », sans
+							garantie d'aucune sorte, expresse ou implicite, y compris les garanties de qualité
+							marchande, d'adaptation à un usage particulier et de non-contrefaçon. Nous ne garantissons
+							pas que les Outils Officiels seront exempts d'erreurs ni qu'ils analyseront ou produiront les
+							données correctement.</p>
+					</div>
+
+					<div class="license-section" id="liability">
+						<h2><span>11.</span> Limitation de responsabilité</h2>
+						<p>Dans toute la mesure permise par la loi, Nous ne sommes pas responsables des dommages
+							indirects, accessoires, spéciaux, consécutifs ou punitifs, ni de la perte de données, de
+							profits ou de revenus, découlant de Votre utilisation de LXON ou des Outils Officiels. Notre
+							responsabilité totale à l'égard de toute réclamation est limitée au montant que Vous Nous
+							avez payé pour les Outils Officiels, lequel peut être de zéro.</p>
+					</div>
+
+					<div class="license-section" id="changes">
+						<h2><span>12.</span> Changements</h2>
+						<p><b>12.1.</b> Nous pouvons mettre à jour la présente entente en tout temps en publiant la
+							version à jour, avec sa date d'entrée en vigueur, à l'adresse <a
+								href="https://lxon.lebbex.com/licence">lxon.lebbex.com/licence</a>. Les mises à jour
+							prennent effet dès leur publication, sous réserve des articles 12.2, 12.3 et 12.4. Si Vous
+							n'acceptez pas une mise à jour, Vous devez cesser d'utiliser les avantages conférés par la
+							présente licence.</p>
+						<p><b>12.2.</b> Malgré toute mise à jour, Nous n'exigerons ni redevances ni aucun autre paiement
+							pour l'utilisation de toute version de LXON ou des Outils Officiels publiée avant cette mise
+							à jour. Ces versions demeurent libres d'utilisation aux conditions de l'article 1. Des
+							versions ultérieures peuvent être publiées à d'autres conditions, mais cela n'affecte pas les
+							versions déjà publiées.</p>
+						<p><b>12.3.</b> Un Produit Diffusé demeure régi par la version de la présente entente en vigueur à
+							sa date de diffusion, tant qu'il continue d'utiliser uniquement des versions de LXON et des
+							Outils Officiels publiées au plus tard à cette date. Un Produit Diffusé Modifié est un
+							nouveau Produit Diffusé et est régi par la version en vigueur à sa propre date de diffusion.
+							Le présent article ne dispense d'aucun manquement à une version antérieure de la présente
+							entente.</p>
+						<p><b>12.4.</b> Il Vous incombe de démontrer la date de diffusion d'un Produit Diffusé au moyen
+							d'éléments de preuve raisonnables et valides, tels que des notes de version datées,
+							l'historique du contrôle de version et/ou les horodatages du registre de paquets. À défaut,
+							la version actuelle de la présente entente s'applique au Produit Diffusé.</p>
+					</div>
+
+					<div class="license-section" id="general">
+						<h2><span>13.</span> Dispositions générales</h2>
+						<p><b>13.1.</b> La présente entente est régie par les lois de la province de Québec et les lois
+							fédérales du Canada qui s'y appliquent, sans égard aux règles de conflit de lois. Sous
+							réserve des droits impératifs des consommateurs, les tribunaux du district judiciaire de
+							Montréal, au Québec, ont compétence exclusive à l'égard de tout litige découlant de la
+							présente entente.</p>
+						<p><b>13.2.</b> Si une partie de la présente entente est jugée inexécutoire, le reste demeure en
+							vigueur.</p>
+						<p><b>13.3.</b> La présente entente constitue l'intégralité de l'entente entre Vous et Nous.</p>
+						<p><b>13.4.</b> Vous ne pouvez pas céder la présente entente sans Notre consentement écrit.</p>
+					</div>
+
+					<div class="license-section">
+						<p>
+							Pour les avis, questions et demandes de permission :
+							<a href="mailto:lxon@lebbex.com">lxon@lebbex.com</a>
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<div class="divider"></div>
+
+			<footer>
+				©Lebbex 2026. Tous droits réservés.
+			</footer>
+		</main>
+	</div>
+
+	<script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
+	<script src="/ressources/fog.js"></script>
+	<script src="/ressources/license.js"></script>
+	<script>lic.init("0.1", "fr");</script>
+
+</body>
+
+</html>

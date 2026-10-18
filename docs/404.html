@@ -358,18 +358,18 @@
 			let rotSpeed = 0;
 
 			const jumpSounds = Array.from({ length: 5 }, (_, i) => {
-				const a = new Audio(`ressources/jump${i}.ogg`);
+				const a = new Audio(`ressources/sounds/jump${i}.ogg`);
 				a.preload = 'auto';
 				return a;
 			});
 
 			const stepSounds = Array.from({ length: 20 }, (_, i) => {
-				const a = new Audio(`ressources/${i}.ogg`);
+				const a = new Audio(`ressources/sounds/${i}.ogg`);
 				a.preload = 'auto';
 				return a;
 			});
 
-			const hurtSound = new Audio(`ressources/hurt.ogg`);
+			const hurtSound = new Audio(`ressources/sounds/hurt.ogg`);
 			hurtSound.preload = 'auto';
 
 			function playStep() {
@@ -734,7 +734,7 @@
 
 		function onCloudGone() {
 			notFoundEl.textContent = ":(";
-			const thunderSound = new Audio(`ressources/thunder${Math.floor(Math.random() * 2)}.ogg`);
+			const thunderSound = new Audio(`ressources/sounds/thunder${Math.floor(Math.random() * 2)}.ogg`);
 			thunderSound.preload = 'auto';
 			thunderSound.play();
 			startRain();

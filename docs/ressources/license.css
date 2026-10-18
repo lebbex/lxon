@@ -92,7 +92,7 @@
     width: 100%;
     box-sizing: border-box;
     padding: 0 clamp(1rem, 3vw, 2.5rem);
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(13, 7, 4, 0.4);
     border-radius: 16px;
     text-align: left;
 }
@@ -123,7 +123,7 @@
 
 .license-section p,
 .license-section li {
-    color: color-mix(in srgb, var(--ink) 70%, transparent);
+    color: color-mix(in srgb, var(--ink) 80%, transparent);
 }
 
 .license-section b {
@@ -137,6 +137,7 @@
     max-width: none;
     margin: 0 0 1.5rem 0;
     padding-left: clamp(0.75rem, 2.5vw, 2rem);
+    font-weight: lighter;
 }
 
 .license-section p:last-child {
@@ -233,7 +234,7 @@
     will-change: transform;
 }
 
-/* Version entries (same as .nav1 in style-doc.css) */
+/* Version entries */
 .nav1 {
     display: block;
     padding: 5px 40px 5px 10px;
@@ -242,7 +243,10 @@
     text-decoration: none;
     cursor: default;
     transition: color 0.1s ease, transform 0.8s cubic-bezier(0, 1, 0.8, 1);
-    min-width: min-content;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 @media (hover: hover) {
@@ -264,7 +268,7 @@
     border-radius: 5px;
 }
 
-/* Sections listed under the open version (same as .nav-sub in style-doc.css) */
+/* Sections under the open version */
 .nav-sub {
     display: block;
     padding: 5px 10px;
@@ -273,7 +277,10 @@
     text-decoration: none;
     cursor: default;
     transition: color 0.1s ease, transform 0.8s cubic-bezier(0, 1, 0.8, 1);
-    min-width: min-content;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 @media (hover: hover) {
@@ -295,6 +302,24 @@
     .nav-sub.depth1 {
         padding: 5px 0px 5px 30px;
     }
+}
+
+/* Right padding of each entry, so the fade lines up with where the text ends */
+.nav1 { --pr: 40px; }
+.nav-sub { --pr: 10px; }
+.nav-sub.depth1 { --pr: 0px; }
+
+/* Fade to the right, only on entries whose text is cut off (class set by license.js) */
+.nav1.truncated,
+.nav-sub.truncated {
+    -webkit-mask-image: linear-gradient(to right,
+        black calc(100% - var(--pr) - 60px),
+        rgba(0, 0, 0, 0.25) calc(100% - var(--pr) - 30px),
+        transparent calc(100% - var(--pr) + 8px));
+    mask-image: linear-gradient(to right,
+        black calc(100% - var(--pr) - 60px),
+        rgba(0, 0, 0, 0.25) calc(100% - var(--pr) - 30px),
+        transparent calc(100% - var(--pr) + 8px));
 }
 
 /* ---------------- "Version X, Date" line under the title ---------------- */
@@ -393,4 +418,135 @@
 @media (max-height: 450px) {
     .site-mini-nav { display: none; }
     .site-tab { top: 50px; left: 7px; }
+}
+
+/* ---------------- Language switcher (inserted by license.js) ---------------- */
+
+/* left / top / height are set by license.js so it always sits right after the home (or hamburger) button */
+.site-lang {
+    position: fixed;
+    top: 6px;
+    left: 120px;
+    height: 50px;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.site-lang-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 100%;
+    padding: 0 14px 0 10px;
+    background: transparent;
+    border: none;
+    cursor: default;
+    font: inherit;
+    color: white;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Same look and hover animation as the hamburger button: dim, brighten to 0.5 over 1s */
+.site-lang-icon,
+.site-lang-label {
+    opacity: 0.1;
+    transition: opacity 1s ease;
+}
+
+.site-lang-icon {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+    image-rendering: auto;
+    filter: brightness(100);
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
+.site-lang-label {
+    font-size: 0.95rem;
+    font-weight: lighter;
+    white-space: nowrap;
+}
+
+@media (hover: hover) {
+    .site-lang-btn:hover .site-lang-icon,
+    .site-lang-btn:hover .site-lang-label { opacity: 0.5; }
+}
+
+.site-lang.open .site-lang-icon,
+.site-lang.open .site-lang-label { opacity: 0.5; }
+
+/* Dropdown: grows from 0 height + fades in; white 50% with blur */
+.site-lang-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    min-width: 170px;
+    box-sizing: border-box;
+    padding: 6px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 14px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+    transform-origin: top left;
+    transform: scaleY(0);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1),
+                opacity 0.25s ease,
+                visibility 0s linear 0.35s;
+}
+
+.site-lang.open .site-lang-menu {
+    transform: scaleY(1);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1),
+                opacity 0.25s ease,
+                visibility 0s;
+}
+
+.site-lang-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 10px;
+    background: transparent;
+    border: none;
+    border-radius: 9px;
+    cursor: default;
+    font: inherit;
+    font-size: 0.95rem;
+    color: #0b0d12;
+    text-align: left;
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color 0.15s ease;
+}
+
+@media (hover: hover) {
+    .site-lang-option:hover {
+        background: rgba(0, 0, 0, 0.08);
+    }
+}
+
+.site-lang-option.selected {
+    background: rgba(0, 0, 0, 0.14);
+}
+
+.site-lang-flag {
+    width: 30px;
+    height: 20px;
+    object-fit: cover;
+    image-rendering: auto;
+    -webkit-user-drag: none;
+    user-select: none;
 }

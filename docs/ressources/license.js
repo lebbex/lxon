@@ -1,40 +1,53 @@
-// Sections shown in the side nav: [name and number, id of the section div]
-const sections = [
-	["Definitions", "definitions"],
-	["1. Grant of license", "grant"],
-	["2. No modification", "no-modification"],
-	["3. EULA", "eula"],
-	["4. Branding and Trademarking", "branding"],
-	["5. Permitted parsing", "parsing"],
-	["6. Permitted serialization", "serialization"],
-	["7. Generated File extension", "file-extension"],
-	["8. Enforcement and remedies", "enforcement"],
-	["9. Disclaimer of warranty", "disclaimer"],
-	["10. Limitation of liability", "liability"],
-	["11. Changes", "changes"],
-	["12. General", "general"]
-];
-
 // Every version of the license: version -> { date: "YYYY-MM-DD" }
 // Keep the newest version FIRST: this is the order shown in the side nav,
 // and the first entry is used if init() is called without a version.
 // Keep keys as non-integer strings ("1.0.0", not "1") so the order is preserved.
 const versions = {
-	"1.0": { date: "2026-10-18" },
-	//"0.9": { date: "2026-4-3"}
+	"0.1": {
+		date: "2026-10-18",
+		lang: ["en", "fr", "es"]
+	},
+	"0.0": {
+		date: "2026-10-17",
+		lang: ["en"]
+	}
 };
+
+// Every language the site knows. Which of them a given license version is available in is set by `lang` in `versions`.
+// code: short id (also the flag file name), name: text shown in the button and the dropdown,
+// lic: the word for "license" in that language, used in the page URL (/license, /licence, /licencia).
+const languages = [
+	{ code: "en", name: "English", lic: "license" },
+	{ code: "fr", name: "Fran\u00e7ais", lic: "licence" },
+	{ code: "es", name: "Espa\u00f1ol", lic: "licencia" }
+];
+const defaultLanguage = "en";
+
+// Flag image shown next to a language in the dropdown: /ressources/flags/<code>.png
+function langFlag(lang) {
+	return "/ressources/flags/" + lang.code + ".png";
+}
+
+// Language codes a version is available in (a version without `lang` is English only).
+function versionLangs(version) {
+	return (versions[version] && versions[version].lang) || [defaultLanguage];
+}
 
 // The newest version is the first entry of `versions`.
 function latestVersion() {
 	return Object.keys(versions)[0];
 }
 
-// Where a version's page lives. Edit this if your URL scheme differs.
-// The newest version is served directly at /license, archived ones at /license/<version>.
+// Where a version's page lives in a given language. Edit this if your URL scheme differs.
+// The newest version is served directly at /<word>, archived ones at /<word>/<version>,
+// where <word> is the language's `lic` (English: /license, /license/1.0 - Spanish: /licencia, /licencia/1.0).
+// If the version isn't available in that language, the English page is used.
 // Same idea as docu.createHref: ".html" is appended on localhost.
-function versionHref(version) {
+function versionHref(version, langCode) {
 	const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
-	const path = version === latestVersion() ? "/license" : "/license/" + version;
+	const code = versionLangs(version).includes(langCode) ? langCode : defaultLanguage;
+	const word = languages.find(l => l.code === code).lic;
+	const path = "/" + word + (version === latestVersion() ? "" : "/" + version);
 	return isLocal ? path + ".html" : path;
 }
 
@@ -42,6 +55,19 @@ function versionHref(version) {
 function formatLicenseDate(iso) {
 	const [y, m, d] = iso.split("-").map(Number);
 	return new Date(y, m - 1, d).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+}
+
+// Sections shown in the side nav, read straight from the page: [nav label, id of the section div].
+// Every `.license-section` that has an id and an <h2> becomes one entry, in page order,
+// so adding, removing or renaming a section in the HTML needs no change here.
+function readSections() {
+	const result = [];
+	document.querySelectorAll(".license-section[id]").forEach(div => {
+		const heading = div.querySelector("h2");
+		if (!heading) return;
+		result.push([heading.textContent.replace(/\s+/g, " ").trim(), div.id]);
+	});
+	return result;
 }
 
 // Same structure as docu.js: scroll observer + nav highlighting + hash scrolling
@@ -96,10 +122,19 @@ window.lic = {
 	},
 
 	// version: the version of the license this page shows (a key of `versions`)
-	init: function (version) {
+	// langCode: the language this page is written in (one of that version's `lang`)
+	init: function (version, langCode) {
 		if (version === undefined) version = Object.keys(versions)[0];
 		if (!versions[version]) console.error("lic.init: unknown license version '" + version + "'. Add it to `versions`.");
 
+		const availableCodes = versionLangs(version);
+		if (langCode === undefined) langCode = defaultLanguage;
+		if (!availableCodes.includes(langCode)) {
+			console.error("lic.init: version '" + version + "' is not available in '" + langCode + "'. Add it to `versions[\"" + version + "\"].lang`.");
+			langCode = availableCodes.includes(defaultLanguage) ? defaultLanguage : availableCodes[0];
+		}
+
+		const sections = readSections();
 		const body = document.body;
 		const content = document.getElementById("scroll-container");
 
@@ -220,6 +255,105 @@ window.lic = {
 		body.append(miniNav);
 
 
+		// Language switcher: icon + current language, placed right after the home button
+		// (after the hamburger button while the top bar is visible). The dropdown lists this version's languages.
+		const langWrap = document.createElement("div");
+		langWrap.className = "site-lang";
+
+		const langButton = document.createElement("button");
+		langButton.type = "button";
+		langButton.className = "site-lang-btn";
+		langButton.setAttribute("aria-haspopup", "listbox");
+		langButton.setAttribute("aria-expanded", "false");
+		const langIcon = document.createElement("img");
+		langIcon.className = "site-lang-icon";
+		langIcon.alt = "Language";
+		langIcon.src = "/ressources/lang.png";
+		const langLabel = document.createElement("span");
+		langLabel.className = "site-lang-label";
+		langButton.append(langIcon, langLabel);
+
+		const langMenu = document.createElement("div");
+		langMenu.className = "site-lang-menu";
+		langMenu.setAttribute("role", "listbox");
+
+		const langOptions = {};
+
+		function setLanguage(code) {
+			const lang = languages.find(l => l.code === code) || languages[0];
+			lic.lang = lang.code;
+			langLabel.textContent = lang.name;
+			Object.entries(langOptions).forEach(([c, el]) => {
+				const selected = c === lang.code;
+				el.classList.toggle("selected", selected);
+				el.setAttribute("aria-selected", selected ? "true" : "false");
+			});
+		}
+
+		function toggleLangMenu(open) {
+			const willOpen = open === undefined ? !langWrap.classList.contains("open") : open;
+			langWrap.classList.toggle("open", willOpen);
+			langButton.setAttribute("aria-expanded", willOpen ? "true" : "false");
+		}
+
+		const availableLanguages = availableCodes.map(c => languages.find(l => l.code === c)).filter(Boolean);
+		availableLanguages.forEach(lang => {
+			const option = document.createElement("button");
+			option.type = "button";
+			option.className = "site-lang-option";
+			option.setAttribute("role", "option");
+			const flag = document.createElement("img");
+			flag.className = "site-lang-flag";
+			flag.alt = "";
+			flag.src = langFlag(lang);
+			const name = document.createElement("span");
+			name.textContent = lang.name;
+			option.append(flag, name);
+			option.addEventListener("click", () => {
+				toggleLangMenu(false);
+				// Go to this version's page in that language (the selection updates when the page loads)
+				if (lang.code !== lic.lang) location.href = versionHref(version, lang.code);
+			});
+			langMenu.appendChild(option);
+			langOptions[lang.code] = option;
+		});
+
+		langButton.addEventListener("click", () => toggleLangMenu());
+		document.addEventListener("click", (e) => {
+			if (!langWrap.contains(e.target)) toggleLangMenu(false);
+		});
+		window.addEventListener("keydown", (e) => {
+			if (e.key === "Escape") toggleLangMenu(false);
+		});
+
+		langWrap.append(langButton, langMenu);
+		body.append(langWrap);
+		setLanguage(langCode);
+
+		// Follow the home button, or the hamburger button while the top bar is shown
+		// Horizontally: right after the button's box. Vertically: centered on the button's icon itself
+		// (not its box, which can have padding / line-height that shifts the center).
+		function positionLang() {
+			const topBar = getComputedStyle(miniNav).display !== "none";
+			const box = (topBar ? tabButton : homeIcon).getBoundingClientRect();
+			const icon = (topBar ? tabImage : homeImage).getBoundingClientRect();
+			const centerY = icon.height ? icon.top + icon.height / 2 : box.top + box.height / 2;
+			langWrap.style.left = box.right + "px";
+			langWrap.style.top = (centerY - langWrap.offsetHeight / 2) + "px";
+		}
+		positionLang();
+		window.addEventListener("resize", positionLang);
+		window.addEventListener("scroll", positionLang, { passive: true });
+		homeImage.addEventListener("load", positionLang);
+		if (window.ResizeObserver) {
+			const langObserver = new ResizeObserver(positionLang);
+			langObserver.observe(homeIcon);
+			langObserver.observe(homeImage);
+			langObserver.observe(tabButton);
+			langObserver.observe(tabImage);
+		}
+
+
 		function closeNavOnOutsideInteraction(e) {
 			if (nav.classList.contains("hidden")) return;
 			if (nav.contains(e.target) || tabButton.contains(e.target) || (homeIcon && homeIcon.contains(e.target)) || miniNav.contains(e.target)) return;
@@ -277,11 +411,11 @@ window.lic = {
 			const strong = document.createElement("b");
 			strong.textContent = "You\u2019re viewing an archived version of the LXON Developer License. ";
 			banner.append(strong);
-			banner.append("It remains available for projects released under it. " +
-				"New projects, and any project that adopts a newer version of LXON or the Official Tools, " +
-				"are governed by the current license.");
+			banner.append("It remains available for legal transparency reasons " +
+				"and for shipped products still released under it. " +
+				"All current and future usage is governed by the updated license, with no exceptions.");
 			const link = document.createElement("a");
-			link.href = versionHref(latestVersion());
+			link.href = versionHref(latestVersion(), langCode);
 			link.textContent = "View the current license (Version " + latestVersion() + ")";
 			link.style.display = "block";
 			link.style.marginTop = "0.75rem";
@@ -326,7 +460,7 @@ window.lic = {
 			item.className = 'nav1';
 			item.textContent = "Version " + key;
 			if (versions[key]) item.title = formatLicenseDate(versions[key].date);
-			item.href = versionHref(key);
+			item.href = versionHref(key, langCode);
 			if (key === version) {
 				// "selected" = white text, "open" = the highlighted box (same classes the docs use)
 				item.classList.add("selected", "open");
@@ -343,9 +477,9 @@ window.lic = {
 					if (window.scrollY > 2) lic.isScrollingToHash = true;
 
 					// 3. Select the first section right away
-					const firstId = sections[0][1];
+					const firstId = sections[0] && sections[0][1];
 					Object.values(lic.subNavs).forEach(s => s.classList.remove("inter"));
-					if (lic.subNavs[firstId]) lic.subNavs[firstId].classList.add("inter");
+					if (firstId && lic.subNavs[firstId]) lic.subNavs[firstId].classList.add("inter");
 
 					// 4. Scroll up, then hand control back to the observer on arrival
 					lic.lenis.scrollTo(0, {
@@ -360,6 +494,17 @@ window.lic = {
 			}
 			else navInner.appendChild(item);
 		});
+
+		// Fade the right edge of nav entries whose text is cut off by the "…"
+		function updateNavTruncation() {
+			navInner.querySelectorAll('.nav1, .nav-sub').forEach(el => {
+				el.classList.toggle('truncated', el.scrollWidth > el.clientWidth + 1);
+			});
+		}
+		updateNavTruncation();
+		window.addEventListener('resize', updateNavTruncation);
+		if (document.fonts && document.fonts.ready) document.fonts.ready.then(updateNavTruncation);
+		if (window.ResizeObserver) new ResizeObserver(updateNavTruncation).observe(nav);
 
 
 		requestAnimationFrame(() => {

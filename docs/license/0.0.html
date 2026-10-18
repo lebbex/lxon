@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>LXON Developer License</title>
+	<link rel="icon" href="/logo.png" type="image/x-icon">
+	<link rel="stylesheet" href="https://unpkg.com/lenis@1.3.23/dist/lenis.css">
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400&display=swap">
+	<link rel="stylesheet" href="/ressources/styles.css">
+	<link rel="stylesheet" href="/style-home.css">
+	<link rel="stylesheet" href="/ressources/license.css">
+</head>
+
+<body>
+
+	<canvas id="noise-canvas"></canvas>
+
+	<div id="scroll-container">
+		<main>
+
+			<section class="license-head">
+				<div class="eyebrow">LXON™</div>
+				<h1>Developer License</h1>
+			</section>
+
+			<section class="license-body">
+				<div class="license-text">
+					<div class="license-section" id="definitions">
+						<h2>Definitions</h2>
+						<p>For the purposes of this license, the following terms shall have the meanings assigned to
+							them below:</p>
+						<p><b>“We” or “Us”</b> refers to the company, whether or not yet incorporated, together with its
+							successors and assigns. We own the copyright in the LXON specification, its documentation,
+							and the Official Tools, and the LXON™ and Lebbex™ trademarks and the LXON logo, and We
+							publish and distribute them. We are the licensor under this agreement and grant the license
+							set out in it.</p>
+						<p><b>“You”</b> refers to the individual or entity that accepts this agreement for one or more
+							Dependent Softwares of Your choosing.</p>
+						<p><b>“LXON”</b> refers to the serialization format, its specification and its syntax, as
+							published by Us.</p>
+						<p><b>“LXON Data”</b> refers to serialized data formatted using the LXON specifications and
+							syntax.</p>
+						<p><b>“LXON Tool”</b> refers to a parser, stringifier, library, editor, web app, or other
+							software whose main reasonable function is to expose to any person or program the ability to
+							read, write, or modify LXON Data of that person’s or program’s choosing.</p>
+						<p><b>“Official Tool”</b> refers to a LXON Tool published by Us.</p>
+						<p><b>“Certified Tool”</b> refers to a LXON Tool developed or published by third party entities,
+							certified by Us. A list of all certified LXON Tools can be found at
+							<a href="https://lxon.lebbex.com/certified">lxon.lebbex.com/certified</a>.
+						</p>
+						<p><b>“Uncertified Tools”</b> refers to a LXON Tool developed or published by third party
+							entities that has not been certified by Us.</p>
+						<p><b>“Dependent Software”</b> refers to software to which You decide to apply this license to.
+							You must own the software, and it must not be a LXON Tool.</p>
+						<p><b>“Generated File”</b> refers to a file that the Dependent Software produces, writes or
+							modifies, regardless of who initiated the action. This includes files produced
+							automatically, files produced at the request of a user or third party, and files a user or
+							third party creates, saves, or edits using the Dependent Software’s own functionality. A
+							file ceases to be a Generated File if it is later altered by means other than the Dependent
+							Software, or damaged by events beyond the Dependent Software’s control. It, as with any
+							other file, becomes a Generated File again if the Dependent Software subsequently writes or
+							modifies it.</p>
+					</div>
+
+					<div class="license-section" id="grant">
+						<h2><span>1.</span> Grant of license</h2>
+						<p>We grant You a worldwide, non-exclusive, non-transferable, royalty-free license to use the
+							Official Tools, authorized trademarked and/or authorized copyrighted elements, and a
+							declaration of certification, within a Dependent Software subject to these terms. All rights
+							not expressly granted are reserved by Us.</p>
+					</div>
+
+					<div class="license-section" id="no-modification">
+						<h2><span>2.</span> No modification</h2>
+						<p>The Official Tools are provided as-is. You may not modify, adapt, optimize, translate, port,
+							decompile, or create derivative works of the Official Tools, or any part of them. You may
+							redistribute them only in their unmodified form within the Dependent Software, with this
+							agreement and all notices intact.</p>
+					</div>
+
+					<div class="license-section" id="eula">
+						<h2><span>3.</span> EULA</h2>
+						<p><b>3.1. Requirement.</b> If You make a Dependent Software available to end users, You must
+							bind every end user to an end-user license agreement, terms of service, or equivalent (the
+							“EULA”) that contains, at minimum, the terms in Sections 3.2 through 3.7. If the Dependent
+							Software has no EULA, You must create one. The end user must accept the EULA before or at
+							first use of the Dependent Software, by a method that is valid under applicable law (for
+							example, a click-through acceptance). Your EULA may contain any additional terms, but it may
+							not contradict or weaken the terms required by this Section.</p>
+						<p><b>3.2. End-user restrictions on the Official Tools.</b> To the extent the Dependent Software
+							contains or is distributed with any Official Tool, Your EULA must prohibit the end user
+							from:</p>
+						<p class="sub">(a) modifying, adapting, optimizing, translating, porting, or creating derivative
+							works of the Official Tool, or any part of it;</p>
+						<p class="sub">(b) decompiling, disassembling, reverse engineering, or otherwise attempting to
+							read or derive the source code, internal logic, or internal structure of the Official Tool;
+						</p>
+						<p class="sub">(c) extracting, copying, or separating the Official Tool from the Dependent
+							Software, or using it outside of the Dependent Software;</p>
+						<p class="sub">(d) redistributing, sublicensing, renting, or otherwise making the Official Tool
+							available to any third party, except as part of an unmodified copy of the Dependent
+							Software; and</p>
+						<p class="sub">(e) removing, altering, or obscuring any copyright, trademark, or license notice
+							as required in Section 2.</p>
+						<p>This Section does not require You to restrict an end user from reading, writing, or modifying
+							LXON Data, or Generated Files, through the Dependent Software’s own functionality, or from
+							doing anything to the Dependent Software that does not involve the Official Tools. Your EULA
+							may state that these restrictions do not apply to the extent applicable law expressly
+							forbids them.</p>
+						<p><b>3.3. Acknowledgment of third-party ownership.</b> If the Dependent Software includes,
+							displays, or is distributed with any of the following, Your EULA must list each one and
+							state that it is owned by its respective owner, that the end user acquires no ownership or
+							license in it through the EULA, and that LXON™ is a trademark of Lebbex™:</p>
+						<p class="sub">(a) the LXON™ or Lebbex™ names or trademarks;</p>
+						<p class="sub">(b) the LXON logo;</p>
+						<p class="sub">(c) any Official Tool; and</p>
+						<p class="sub">(d) any portion of the LXON specification or documentation.</p>
+						<p>The list must be accurate and kept current. This does not replace the notice required by
+							Section 4.1.</p>
+						<p><b>3.4. Amendment of the EULA.</b> Your EULA must reserve Your right to amend its terms
+							concerning the Official Tools, the LXON™ and Lebbex™ marks, and the materials listed in
+							Section 3.3, so that You can conform them to any version of this agreement that applies to
+							You. Your EULA must allow You to apply such an amendment either (a) only to versions of the
+							Dependent Software released after the amendment, or (b) to all versions, including those
+							already released, at Your choice. Your EULA must also provide that an end user who does not
+							accept an amendment must stop using the version of the Dependent Software to which it
+							applies. You must give end users reasonable notice of amendments, and You remain subject to
+							any mandatory rules on amending consumer contracts. This Section does not enlarge Your
+							rights under Section 11; You may only apply an amendment to the extent You are bound by, or
+							have adopted, the corresponding version of this agreement.</p>
+						<p><b>3.5. Disclaimers flowing to end users.</b> Your EULA must state that the Official Tools
+							are provided “as is” without warranty of any kind, and that We have no liability to the end
+							user in connection with the Official Tools, in each case to the maximum extent permitted by
+							law and in terms at least as protective of Us as Sections 9 and 10.</p>
+						<p><b>3.6. Third-party beneficiary.</b> Your EULA must state that We are an intended third-party
+							beneficiary of Sections 3.2, 3.3, and 3.5 of Your EULA (and of the corresponding terms) and
+							may enforce them directly against the end user.</p>
+						<p><b>3.7. Enforcement and records.</b> You must take reasonable steps to enforce the terms
+							required by this Section, and You must notify Us promptly if You become aware of an end
+							user’s breach of them that is material or ongoing. You must keep a dated copy of every
+							version of Your EULA, as evidence for the purposes of Section 11.4, and provide a copy to Us
+							on reasonable request.</p>
+						<p><b>3.8. Failure to include required terms.</b> A Dependent Software distributed without an
+							EULA that meets this Section is in breach of this agreement, and Section 8 applies.</p>
+					</div>
+
+					<div class="license-section" id="branding">
+						<h2><span>4.</span> Branding and Trademarking</h2>
+						<p><b>4.1.</b> The Dependent Software may use the names “LXON”, “Lxon”, “lxon”, “LEBBEX” and
+							“Lebbex” (with and without the ™ symbol appended to the end) descriptively as long as the
+							context provided doesn’t lead the consumer into thinking You or the Dependent Software is
+							officially partnered with LXON™ and/or Lebbex™. You must also make it clear that LXON™ is a
+							trademark of Lebbex™ somewhere easily accessible, visible and obvious to the reader.</p>
+						<p><b>4.2.</b> The Dependent Software may use the name “LXON”, “Lxon”, or “lxon” (without the ™
+							symbol) as long as “LXON™” was reasonably viewed by the consumer prior or is visible at the
+							same time.</p>
+						<p><b>4.3.</b> The Dependent Software may use the name “LEBBEX”, or “Lebbex” (without the ™
+							symbol) as long as “LEBBEX™” or “Lebbex™” was reasonably viewed by the consumer prior or is
+							visible at the same time.</p>
+						<p><b>4.4.</b> The Dependent Software may only use the name “LEBBEX”, or “Lebbex” (with and
+							without the ™ symbol appended to the end) for the sole purpose of identifying Us as the
+							publisher and trademark owner of LXON.</p>
+						<p><b>4.5.</b> The Dependent Software may use the unmodified LXON logo available at
+							<a href="https://lxon.lebbex.com/logo.png" target="blank">lxon.lebbex.com/logo.png</a> as
+							long as the context provided doesn’t attempt to repurpose,
+							rebrand, diminish, or otherwise modify the logo’s significance and ownership.
+						</p>
+						<p><b>4.6.</b> You may not use “LXON”, “Lebbex”, or confusingly similar names as part of the
+							name of any product, company, domain, package, or repository. Descriptive references, such
+							as “works with LXON™,” made in line with this Section, are allowed.</p>
+					</div>
+
+					<div class="license-section" id="parsing">
+						<h2><span>5.</span> Permitted parsing</h2>
+						<p><b>5.1.</b> You may use the Official Tools only to parse data You have authorization to
+							parse. This includes but is not limited to:</p>
+						<ul>
+							<li>Public APIs;</li>
+							<li>Private APIs You have authorization to access;</li>
+							<li>Files created to be read by external software;</li>
+							<li>Files You have authorization to access;</li>
+						</ul>
+						<p><b>5.2.</b> You may not use the Official Tools to parse data that was not meant to be read by
+							external, non-authorized parsers.</p>
+						<p><b>5.3.</b> Where there is any reasonable doubt as to whether You are authorized to parse a
+							given set of data, You must presume that You are not authorized and refrain from parsing it
+							unless and until You have obtained express permission from the data’s owner or rightful
+							controller. Where You are that owner or controller, You are deemed authorized.</p>
+					</div>
+
+					<div class="license-section" id="serialization">
+						<h2><span>6.</span> Permitted serialization</h2>
+						<p><b>6.1.</b> You may not use the Official Tools to serialize data that You have no
+							authorization to access or copy. This includes, for example, internal memory readings of
+							another application.</p>
+						<p><b>6.2.</b> This restriction applies even if the data passes through one or more intermediate
+							formats before or after LXON. LXON may not be used as a step in any process that serializes
+							data You are not entitled to.</p>
+					</div>
+
+					<div class="license-section" id="file-extension">
+						<h2><span>7.</span> Generated File extension</h2>
+						<p><b>7.1.</b> A Dependent Software must not give the “.lxon” extension, in any letter case, to
+							a Generated File unless the file contains only LXON Data that the Official Tools can parse
+							as-is, without modification.</p>
+						<p><b>7.2.</b> A Generated File that has the “.lxon” extension but cannot be parsed as a result
+							of an unintentional defect in the Dependent Software does not breach 7.1, whether or not the
+							defect is later resolved.</p>
+						<p><b>7.3.</b> Renaming a Generated File after it has been written does not make You liable
+							under this section, unless the renaming was done by or through the Dependent Software.</p>
+					</div>
+
+					<div class="license-section" id="enforcement">
+						<h2><span>8.</span> Enforcement and remedies</h2>
+						<p><b>8.1.</b> If You breach this agreement, We may require You to stop using LXON and the
+							Official Tools, and We may require the removal of the offending project, repository,
+							package, or content.</p>
+						<p><b>8.2.</b> Your license ends automatically on breach. Sections that by their nature should
+							survive termination will survive.</p>
+						<p><b>8.3.</b> You are responsible for damages that result from Your breach, including any
+							losses suffered by Us. You agree to indemnify and hold Us harmless from claims by third
+							parties that arise from Your use of LXON or the Official Tools in breach of this agreement.
+							For example, if You use the Official Tools to create something that bypasses a restriction
+							in another application, You are responsible for any resulting damage to that application's
+							owner.</p>
+						<p><b>8.4.</b> We may seek injunctive relief in addition to any other remedy.</p>
+					</div>
+
+					<div class="license-section" id="disclaimer">
+						<h2><span>9.</span> Disclaimer of warranty</h2>
+						<p>LXON and the Official Tools are provided "as is" and "as available", without warranty of any
+							kind, express or implied, including warranties of merchantability, fitness for a particular
+							purpose, and non-infringement. We do not warrant that the Official Tools will be error-free
+							or that they will parse or produce data correctly.</p>
+					</div>
+
+					<div class="license-section" id="liability">
+						<h2><span>10.</span> Limitation of liability</h2>
+						<p>To the maximum extent permitted by law, We are not liable for any indirect, incidental,
+							special, consequential, or punitive damages, or for loss of data, profits, or revenue,
+							arising from Your use of LXON or the Official Tools. Our total liability for any claim is
+							limited to the amount You paid Us for the Official Tools, which may be zero.</p>
+					</div>
+
+					<div class="license-section" id="changes">
+						<h2><span>11.</span> Changes</h2>
+						<p><b>11.1.</b> We may update this agreement at any time by posting the updated version, with
+							its effective date, at <a href="https://lxon.lebbex.com/license">
+								lxon.lebbex.com/license</a>. Updates take effect when posted, subject to
+							Sections 11.2 through 11.5. If You do not accept an update, You must stop using the benefits
+							granted by this License.</p>
+						<p><b>11.2.</b> Regardless of any update, We will not require royalties or any other payment for
+							the use of any version of LXON or the Official Tools released before that update. Those
+							versions remain free to use under the terms in Section 1. Later versions may be released
+							under different terms, but that does not affect versions already released.</p>
+						<p><b>11.3.</b> A Shipped Product remains governed by the version of this agreement in effect on
+							its release date, for as long as it is not Modified and continues to use only versions of
+							LXON and the Official Tools released on or before that date. If a Shipped Product is
+							Modified, or adopts a newer version of LXON or the Official Tools, the version of this
+							agreement in effect on the release date of the resulting version applies to it from then on.
+							This section does not excuse any breach of an earlier version of this agreement.</p>
+						<p><b>11.4.</b> “Shipped Product” means a product that has been made publicly available or
+							delivered to customers. You are responsible for showing its release date through reasonable
+							and valid evidence, such as dated release notes, version control history, and/or package
+							registry timestamps. If You cannot, the current version of this agreement applies to the
+							Shipped Product.</p>
+						<p><b>11.5.</b> “Modified” means any change to the source code of the Dependent Software, or to
+							the program logic of its compiled form, including adding, removing, or altering code. The
+							following are not Modifications: changes to configuration files, visual styling or themes,
+							resources and assets (such as images, audio, text, and translations), content or data, and
+							documentation; rebuilding or recompiling unchanged source code with the same versions of the
+							Official Tools; and changes made by end users to their own copies.</p>
+					</div>
+
+					<div class="license-section" id="general">
+						<h2><span>12.</span> General</h2>
+						<p><b>12.1.</b> This agreement is governed by the laws of the Province of Quebec and the federal
+							laws of Canada applicable therein, without regard to conflict-of-law rules. Subject to any
+							mandatory rights of consumers, the courts of the judicial district of Montréal, Quebec, have
+							exclusive jurisdiction over any dispute arising from this agreement.</p>
+						<p><b>12.2.</b> If any part of this agreement is found unenforceable, the rest remains in
+							effect.</p>
+						<p><b>12.3.</b> This agreement is the entire agreement between You and Us.</p>
+						<p><b>12.4.</b> You may not assign this agreement without our written consent.</p>
+					</div>
+
+					<div class="license-section">
+						<p>
+							For notices, questions, and permission requests:
+							<a href="mailto:lxon@lebbex.com">lxon@lebbex.com</a>
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<div class="divider"></div>
+
+			<footer>
+				©Lebbex 2026. All rights reserved.
+			</footer>
+		</main>
+	</div>
+
+	<script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
+	<script src="/ressources/fog.js"></script>
+	<script src="/ressources/license.js"></script>
+	<script>lic.init("0.0");</script>
+
+</body>
+
+</html>
