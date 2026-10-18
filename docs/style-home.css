@@ -104,6 +104,10 @@
     }
 }
 
+a {
+    color: rgba(149, 255, 149, 0.9);
+}
+
 .dropdown {
     position: fixed;
     top: 3.9rem;
