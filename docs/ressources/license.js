@@ -15,13 +15,70 @@ const versions = {
 
 // Every language the site knows. Which of them a given license version is available in is set by `lang` in `versions`.
 // code: short id (also the flag file name), name: text shown in the button and the dropdown,
-// lic: the word for "license" in that language, used in the page URL (/license, /licence, /licencia).
+// lic: the word for "license" in that language, used in the page URL (/license, /licence, /licencia),
+// locale: used to format dates in that language (en-US -> "October 18, 2026", fr-CA -> "18 octobre 2026", es-419 -> "18 de octubre de 2026").
 const languages = [
-	{ code: "en", name: "English", lic: "license" },
-	{ code: "fr", name: "Fran\u00e7ais", lic: "licence" },
-	{ code: "es", name: "Espa\u00f1ol", lic: "licencia" }
+	{ code: "en", name: "English", lic: "license", locale: "en-US" },
+	{ code: "fr", name: "Fran\u00e7ais", lic: "licence", locale: "fr-CA" },
+	{ code: "es", name: "Espa\u00f1ol", lic: "licencia", locale: "es-419" }
 ];
 const defaultLanguage = "en";
+
+// Text per language. %name% placeholders are replaced by t(). A missing key falls back to English.
+// Available placeholders: %version%, %date%, %year% (see where each key is used in init()).
+const strings = {
+	en: {
+		version: "Version %version%",
+		versionWithDate: "Version %version%, %date%",
+		versionTooltip: "%date%",
+		archiveTitle: "You\u2019re viewing an archived version of the LXON Developer License. ",
+		archiveBody: "It remains available for legal transparency reasons " +
+			"and for shipped products still released under it. " +
+			"All current and future usage is governed by the updated license, with no exceptions.",
+		archiveLink: "View the current license (Version %version%)",
+		footer: "\u00a9Lebbex %year%. All rights reserved.",
+		tabAlt: "Tab",
+		homeAlt: "Home",
+		languageAlt: "Language"
+	},
+	fr: {
+		version: "Version %version%",
+		versionWithDate: "Version %version%, %date%",
+		versionTooltip: "%date%",
+		archiveTitle: "Vous consultez une version archiv\u00e9e du LXON Licence de d\u00e9veloppeur. ",
+		archiveBody: "Elle reste accessible pour des raisons de transparence juridique " +
+			"et pour les produits distribu\u00e9s encore publi\u00e9s sous cette licence. " +
+			"Toute utilisation actuelle et future est r\u00e9gie par la licence mise \u00e0 jour, sans exception.",
+		archiveLink: "Consulter la licence actuelle (Version %version%)",
+		footer: "\u00a9Lebbex %year%. Tous droits r\u00e9serv\u00e9s.",
+		tabAlt: "Onglet",
+		homeAlt: "Accueil",
+		languageAlt: "Langue"
+	},
+	es: {
+		version: "Versi\u00f3n %version%",
+		versionWithDate: "Versi\u00f3n %version%, %date%",
+		versionTooltip: "%date%",
+		archiveTitle: "Est\u00e1 viendo una versi\u00f3n archivada de la Licencia de Desarrollador de LXON. ",
+		archiveBody: "Sigue disponible por razones de transparencia legal " +
+			"y para los productos lanzados que a\u00fan se publican bajo ella. " +
+			"Todo uso actual y futuro se rige por la licencia actualizada, sin excepciones.",
+		archiveLink: "Ver la licencia actual (Versi\u00f3n %version%)",
+		footer: "\u00a9Lebbex %year%. Todos los derechos reservados.",
+		tabAlt: "Pesta\u00f1a",
+		homeAlt: "Inicio",
+		languageAlt: "Idioma"
+	}
+};
+
+// t("es", "archiveLink", { version: "0.1" }) -> "Ver la licencia actual (Versión 0.1)"
+// Unknown placeholders are left as they are.
+function t(langCode, key, vars) {
+	const table = strings[langCode] || strings[defaultLanguage];
+	const text = table[key] !== undefined ? table[key] : strings[defaultLanguage][key];
+	if (text === undefined) return key;
+	return text.replace(/%(\w+)%/g, (match, name) => (vars && name in vars) ? vars[name] : match);
+}
 
 // Flag image shown next to a language in the dropdown: /ressources/flags/<code>.png
 function langFlag(lang) {
@@ -51,10 +108,12 @@ function versionHref(version, langCode) {
 	return isLocal ? path + ".html" : path;
 }
 
-// "2026-10-18" -> "October 18, 2026" (built from parts so time zones can't shift the day)
-function formatLicenseDate(iso) {
+// "2026-10-18" -> "October 18, 2026" / "18 octobre 2026" / "18 de octubre de 2026"
+// (built from parts so time zones can't shift the day)
+function formatLicenseDate(iso, langCode) {
 	const [y, m, d] = iso.split("-").map(Number);
-	return new Date(y, m - 1, d).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+	const lang = languages.find(l => l.code === langCode) || languages[0];
+	return new Date(y, m - 1, d).toLocaleDateString(lang.locale, { year: "numeric", month: "long", day: "numeric" });
 }
 
 // Sections shown in the side nav, read straight from the page: [nav label, id of the section div].
@@ -132,6 +191,19 @@ window.lic = {
 		if (!availableCodes.includes(langCode)) {
 			console.error("lic.init: version '" + version + "' is not available in '" + langCode + "'. Add it to `versions[\"" + version + "\"].lang`.");
 			langCode = availableCodes.includes(defaultLanguage) ? defaultLanguage : availableCodes[0];
+		}
+
+		// Shortcut: tr("key", { placeholder: value }) = text of this page's language
+		const tr = (key, vars) => t(langCode, key, vars);
+
+		// Opened via the language dropdown? Remember it, and remove "on" from the URL right away
+		// (other parameters and the #hash are kept)
+		const urlParams = new URLSearchParams(location.search);
+		const openLangOnLoad = urlParams.has("o");
+		if (openLangOnLoad) {
+			urlParams.delete("o");
+			const remaining = urlParams.toString();
+			history.replaceState(null, '', location.pathname + (remaining ? "?" + remaining : "") + location.hash);
 		}
 
 		const sections = readSections();
@@ -232,7 +304,7 @@ window.lic = {
 		const tabButton = document.createElement("button");
 		tabButton.classList.add("site-tab");
 		const tabImage = document.createElement("img");
-		tabImage.alt = "Tab";
+		tabImage.alt = tr("tabAlt");
 		tabImage.src = "/ressources/ham.png";
 		tabButton.append(tabImage);
 
@@ -246,7 +318,7 @@ window.lic = {
 		homeIcon.href = "/";
 		homeIcon.classList.add("site-icon", "site-home");
 		const homeImage = document.createElement("img");
-		homeImage.alt = "Home";
+		homeImage.alt = tr("homeAlt");
 		homeImage.src = "/ressources/home.png";
 		homeIcon.append(homeImage);
 
@@ -267,7 +339,7 @@ window.lic = {
 		langButton.setAttribute("aria-expanded", "false");
 		const langIcon = document.createElement("img");
 		langIcon.className = "site-lang-icon";
-		langIcon.alt = "Language";
+		langIcon.alt = tr("languageAlt");
 		langIcon.src = "/ressources/lang.png";
 		const langLabel = document.createElement("span");
 		langLabel.className = "site-lang-label";
@@ -292,6 +364,11 @@ window.lic = {
 
 		function toggleLangMenu(open) {
 			const willOpen = open === undefined ? !langWrap.classList.contains("open") : open;
+			// Measure the real content height right before opening, so the height animation ends exactly at the content.
+			// scrollHeight is the content while closed (0 vertical padding); + 12 is the 6px padding top and bottom when open.
+			if (willOpen && !langWrap.classList.contains("open")) {
+				langMenu.style.setProperty("--menu-h", (langMenu.scrollHeight + 12) + "px");
+			}
 			langWrap.classList.toggle("open", willOpen);
 			langButton.setAttribute("aria-expanded", willOpen ? "true" : "false");
 		}
@@ -310,9 +387,14 @@ window.lic = {
 			name.textContent = lang.name;
 			option.append(flag, name);
 			option.addEventListener("click", () => {
-				toggleLangMenu(false);
-				// Go to this version's page in that language (the selection updates when the page loads)
-				if (lang.code !== lic.lang) location.href = versionHref(version, lang.code);
+				// Same language: just close the menu
+				if (lang.code === lic.lang) {
+					toggleLangMenu(false);
+					return;
+				}
+				// Other language: go there with ?o. The menu stays open on this page,
+				// and the new page opens it instantly and then closes it.
+				location.href = versionHref(version, lang.code) + "?o";
 			});
 			langMenu.appendChild(option);
 			langOptions[lang.code] = option;
@@ -329,6 +411,22 @@ window.lic = {
 		langWrap.append(langButton, langMenu);
 		body.append(langWrap);
 		setLanguage(langCode);
+
+		if (openLangOnLoad) {
+			// Open instantly: switch off the transitions for one moment
+			const animated = [langMenu, langIcon, langLabel];
+			animated.forEach(el => el.style.transition = "none");
+			toggleLangMenu(true);
+			void langMenu.offsetHeight;   // makes the browser apply the open state with no animation
+			animated.forEach(el => el.style.transition = "");
+			// Then, a couple of frames later, close it with the normal animation
+			requestAnimationFrame(() => requestAnimationFrame(() => toggleLangMenu(false)));
+		}
+
+		// Back button: the old page comes back from cache with the menu still open, so close it
+		window.addEventListener("pageshow", (e) => {
+			if (e.persisted) toggleLangMenu(false);
+		});
 
 		// Follow the home button, or the hamburger button while the top bar is shown
 		// Horizontally: right after the button's box. Vertically: centered on the button's icon itself
@@ -399,7 +497,9 @@ window.lic = {
 		const versionLine = document.createElement("div");
 		versionLine.className = "license-version";
 		const versionDate = versions[version] ? versions[version].date : null;
-		versionLine.textContent = "Version " + version + (versionDate ? ", " + formatLicenseDate(versionDate) : "");
+		versionLine.textContent = versionDate
+			? tr("versionWithDate", { version: version, date: formatLicenseDate(versionDate, langCode) })
+			: tr("version", { version: version });
 		head.appendChild(versionLine);
 
 
@@ -409,14 +509,12 @@ window.lic = {
 			banner.className = "license-archive-banner";
 
 			const strong = document.createElement("b");
-			strong.textContent = "You\u2019re viewing an archived version of the LXON Developer License. ";
+			strong.textContent = tr("archiveTitle");
 			banner.append(strong);
-			banner.append("It remains available for legal transparency reasons " +
-				"and for shipped products still released under it. " +
-				"All current and future usage is governed by the updated license, with no exceptions.");
+			banner.append(tr("archiveBody"));
 			const link = document.createElement("a");
 			link.href = versionHref(latestVersion(), langCode);
-			link.textContent = "View the current license (Version " + latestVersion() + ")";
+			link.textContent = tr("archiveLink", { version: latestVersion() });
 			link.style.display = "block";
 			link.style.marginTop = "0.75rem";
 			banner.append(link);
@@ -458,8 +556,8 @@ window.lic = {
 		versionKeys.forEach(key => {
 			const item = document.createElement('a');
 			item.className = 'nav1';
-			item.textContent = "Version " + key;
-			if (versions[key]) item.title = formatLicenseDate(versions[key].date);
+			item.textContent = tr("version", { version: key });
+			if (versions[key]) item.title = tr("versionTooltip", { date: formatLicenseDate(versions[key].date, langCode) });
 			item.href = versionHref(key, langCode);
 			if (key === version) {
 				// "selected" = white text, "open" = the highlighted box (same classes the docs use)
@@ -505,6 +603,11 @@ window.lic = {
 		window.addEventListener('resize', updateNavTruncation);
 		if (document.fonts && document.fonts.ready) document.fonts.ready.then(updateNavTruncation);
 		if (window.ResizeObserver) new ResizeObserver(updateNavTruncation).observe(nav);
+
+
+		// Footer text in this page's language (the HTML text is only a fallback)
+		const footer = document.querySelector("footer");
+		if (footer) footer.textContent = tr("footer", { year: new Date().getFullYear() });
 
 
 		requestAnimationFrame(() => {
