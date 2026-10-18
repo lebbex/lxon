@@ -21,7 +21,7 @@ const sections = [
 // Keep keys as non-integer strings ("1.0.0", not "1") so the order is preserved.
 const versions = {
 	"1.0": { date: "2026-10-18" },
-    "0.9": { date: "2026-4-3"}
+    //"0.9": { date: "2026-4-3"}
 };
 
 // The newest version is the first entry of `versions`.

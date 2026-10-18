@@ -304,7 +304,18 @@
     font-size: 1.05rem;
     font-weight: lighter;
     color: rgba(255, 255, 255, 0.5);
-    user-select: none;
+}
+
+/* ---------------- Selectable text ---------------- */
+
+/* style-home.css sets user-select: none on h1/h2/footer; the license text must be selectable.
+   The footer and the side nav stay unselectable. */
+.license-head,
+.license-head *,
+.license-body,
+.license-body * {
+    -webkit-user-select: text;
+    user-select: text;
 }
 
 /* Home icon next to the full-height nav (short landscape screens) */
