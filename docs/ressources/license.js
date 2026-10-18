@@ -21,7 +21,7 @@ const sections = [
 // Keep keys as non-integer strings ("1.0.0", not "1") so the order is preserved.
 const versions = {
 	"1.0": { date: "2026-10-18" },
-    //"0.9": { date: "2026-4-3"}
+	//"0.9": { date: "2026-4-3"}
 };
 
 // The newest version is the first entry of `versions`.
@@ -278,8 +278,8 @@ window.lic = {
 			strong.textContent = "You\u2019re viewing an archived version of the LXON Developer License. ";
 			banner.append(strong);
 			banner.append("It remains available for projects released under it. " +
-				"New projects, and any project that adopts a newer version of LXON or the Official Tools, " + 
-                "are governed by the current license.");
+				"New projects, and any project that adopts a newer version of LXON or the Official Tools, " +
+				"are governed by the current license.");
 			const link = document.createElement("a");
 			link.href = versionHref(latestVersion());
 			link.textContent = "View the current license (Version " + latestVersion() + ")";
@@ -333,9 +333,27 @@ window.lic = {
 				// Clicking the open version scrolls back to the top of the page
 				item.onclick = event => {
 					event.preventDefault();
+
+					// 1. Stop any running hash scroll FIRST (it resets the lock and re-renders)
 					lic.stopHashScrollRepeat();
-					lic.isScrollingToHash = false;
-					lic.lenis.scrollTo(0);
+
+					// 2. Pause the observer-driven highlighting BEFORE touching the highlight,
+					//    otherwise the next scroll tick would override it
+					//    (skipped if already at the top, so the lock can't get stuck)
+					if (window.scrollY > 2) lic.isScrollingToHash = true;
+
+					// 3. Select the first section right away
+					const firstId = sections[0][1];
+					Object.values(lic.subNavs).forEach(s => s.classList.remove("inter"));
+					if (lic.subNavs[firstId]) lic.subNavs[firstId].classList.add("inter");
+
+					// 4. Scroll up, then hand control back to the observer on arrival
+					lic.lenis.scrollTo(0, {
+						onComplete: () => {
+							lic.isScrollingToHash = false;
+							lic.renderSubNavs();
+						}
+					});
 				};
 				navInner.appendChild(item);
 				appendSections();
