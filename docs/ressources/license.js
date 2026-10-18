@@ -9,7 +9,7 @@ const versions = {
 	},
 	"0.0": {
 		date: "2026-10-17",
-		lang: ["en"]
+		lang: ["en", "fr"]
 	}
 };
 
@@ -45,7 +45,7 @@ const strings = {
 		version: "Version %version%",
 		versionWithDate: "Version %version%, %date%",
 		versionTooltip: "%date%",
-		archiveTitle: "Vous consultez une version archiv\u00e9e du LXON Licence de d\u00e9veloppeur. ",
+		archiveTitle: "Vous consultez une version archiv\u00e9e du LXON Licence de D\u00e9veloppeur. ",
 		archiveBody: "Elle reste accessible pour des raisons de transparence juridique " +
 			"et pour les produits distribu\u00e9s encore publi\u00e9s sous cette licence. " +
 			"Toute utilisation actuelle et future est r\u00e9gie par la licence mise \u00e0 jour, sans exception.",
