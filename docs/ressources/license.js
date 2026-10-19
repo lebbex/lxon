@@ -32,7 +32,7 @@ const strings = {
 		versionWithDate: "Version %version%, %date%",
 		versionTooltip: "%date%",
 		archiveTitle: "You\u2019re viewing an archived version of the LXON Developer License. ",
-		archiveBody: "It remains available for legal transparency reasons " +
+		archiveBody: "It remains available for legal transparency " +
 			"and for shipped products still released under it. " +
 			"All current and future usage is governed by the updated license, with no exceptions.",
 		archiveLink: "View the current license (Version %version%)",
