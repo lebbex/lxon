@@ -215,6 +215,10 @@
     }
 }
 
+@media (max-height: 450px) and (max-width: 700px) {
+    #nav { top: 60px; max-height: calc(100lvh - 60px); }
+}
+
 #nav-scroll {
     margin-bottom: 0;
     min-height: 0;
@@ -343,13 +347,13 @@
     user-select: text;
 }
 
-/* Home icon next to the full-height nav (short landscape screens) */
+
 @media (max-height: 450px) {
-    .site-home { position: fixed; top: 12px; left: 325px; }
+    .site-home { position: fixed; top: 12px; left: 405px; }
 }
 
 @media (max-height: 450px) and (max-width: 900px) {
-    .site-home { left: 265px; }
+    .site-home { left: 310px; }
 }
  
 /* ---------------- Phones: mini bar + tab button ---------------- */
@@ -415,11 +419,6 @@
     }
 }
 
-@media (max-height: 450px) {
-    .site-mini-nav { display: none; }
-    .site-tab { top: 50px; left: 7px; }
-}
-
 /* ---------------- Language switcher (inserted by license.js) ---------------- */
 
 /* left / top / height are set by license.js so it always sits right after the home (or hamburger) button */
@@ -472,6 +471,11 @@
     white-space: nowrap;
 }
 
+@media (max-height: 450px) and (min-width: 701px) {
+    .site-lang-label { display: none; }
+    .site-lang-btn { padding: 0 10px; }
+}
+
 @media (hover: hover) {
     .site-lang-btn:hover .site-lang-icon,
     .site-lang-btn:hover .site-lang-label { opacity: 0.5; }
@@ -512,6 +516,14 @@
     transition: height 0.7s cubic-bezier(0.2, 0.9, 0.3, 1),
                 opacity 0.6s ease,
                 visibility 0s;
+}
+
+@media (max-height: 450px) and (min-width: 701px) {
+    .site-lang-menu {
+        top: 50%;                      /* same height level as the language button */
+        left: calc(100% + 6px);      /* to the right of it */
+        transform: translateY(-50%);             /* cancel the translateX(-14px) used for the normal layout */
+    }
 }
 
 .site-lang-option {

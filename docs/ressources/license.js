@@ -428,10 +428,25 @@ window.lic = {
 			if (e.persisted) toggleLangMenu(false);
 		});
 
-		// Follow the home button, or the hamburger button while the top bar is shown
-		// Horizontally: right after the button's box. Vertically: centered on the button's icon itself
-		// (not its box, which can have padding / line-height that shifts the center).
+		const shortLayout = window.matchMedia("(max-height: 450px) and (min-width: 701px)");
+
 		function positionLang() {
+			// Full-height nav layout: language icon directly under the home button, centered on it
+			if (shortLayout.matches) {
+				const homeBox = homeIcon.getBoundingClientRect();
+				const homeImgBox = homeImage.getBoundingClientRect();
+				const wrapBox = langWrap.getBoundingClientRect();
+				const iconBox = langIcon.getBoundingClientRect();
+				const iconOffset = (iconBox.left - wrapBox.left) + iconBox.width / 2;
+				const homeCenterX = homeImgBox.width
+					? homeImgBox.left + homeImgBox.width / 2
+					: homeBox.left + homeBox.width / 2;
+				langWrap.style.left = (homeCenterX - iconOffset) + "px";
+				langWrap.style.top = homeBox.bottom + "px";
+				return;
+			}
+
+			// Otherwise: right after the home button, or after the hamburger while the top bar is shown
 			const topBar = getComputedStyle(miniNav).display !== "none";
 			const box = (topBar ? tabButton : homeIcon).getBoundingClientRect();
 			const icon = (topBar ? tabImage : homeImage).getBoundingClientRect();
@@ -442,6 +457,7 @@ window.lic = {
 		positionLang();
 		window.addEventListener("resize", positionLang);
 		window.addEventListener("scroll", positionLang, { passive: true });
+		shortLayout.addEventListener("change", positionLang);
 		homeImage.addEventListener("load", positionLang);
 		if (window.ResizeObserver) {
 			const langObserver = new ResizeObserver(positionLang);
