@@ -249,7 +249,7 @@ section {
     text-transform: uppercase;
     color: var(--ink-dim);
     margin-bottom: 1.2rem;
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 h1 {
@@ -259,7 +259,7 @@ h1 {
     margin: 0 0 1rem 0;
     max-width: 18ch;
     font-weight: 600;
-    overflow-x: hidden;
+    overflow-x: clip;
     user-select: none;
 }
 
@@ -268,7 +268,7 @@ h2 {
     margin: 0 0 1rem 0;
     max-width: 20ch;
     font-weight: 600;
-    overflow-x: hidden;
+    overflow-x: clip;
     user-select: none;
 }
 
