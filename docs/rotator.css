@@ -1,0 +1,56 @@
+/*
+    TEXT ROTATOR
+    Without JS the <p>s inside #rotator just render as normal paragraphs.
+    Once rotator.js runs it adds .rotator-active and stacks two layers on top of each other.
+*/
+
+.rotator {
+    width: 100%;
+    max-width: 74ch;
+}
+
+/* Fully non-interactive: no hover, click, selecting, dragging or long-press menu */
+.rotator,
+.rotator * {
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-drag: none;
+}
+
+.rotator-active {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
+    margin: 1rem 0;
+}
+
+/* The two stacked layers (text1 / text2 roles swap in JS) */
+.rotator-active > .rot-text {
+    grid-area: 1 / 1;
+    justify-self: center;
+    align-self: center;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0;
+    will-change: opacity, filter, transform;
+
+    /* not interactive: no selecting, no hover/click, no text cursor */
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Invisible element used to measure each text's natural size */
+.rotator-active > .rot-measure {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0;
+    visibility: hidden;
+    pointer-events: none;
+}

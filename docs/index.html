@@ -11,6 +11,7 @@
 		href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400&display=swap">
 	<link rel="stylesheet" href="/ressources/styles.css">
 	<link rel="stylesheet" href="style-home.css">
+	<link rel="stylesheet" href="rotator.css">
 </head>
 
 <body>
@@ -64,28 +65,25 @@
 			</section>
 
 			<section>
-				<p>
-					JSON is a primitive, bloated eyesore, similar in nature to a zip bomb.
-				</p>
-				<p>
-					YAML is ambiguous and tiring, with more exceptions than rules.
-				</p>
-				<p>
-					INI is almost on par with a simple text file.
-				</p>
-				<p>
-					TOML is ugly and verbose.
-				</p>
-				<p>
-					XML is XML.
-				</p>
+				<div class="rotator" id="rotator">
+					<p>JSON is primitive in capability and bloated in syntax.</p>
+					<p>YAML is tiringly ambiguous, with more exceptions than rules.</p>
+					<p>EDN is elaborate where not needed and bare where needed.</p>
+					<p>KDL is needlessly inconsistent and confusing.</p>
+					<p>INI is on par with a simple text file.</p>
+					<p>JSON5 is a patch on a rotten ship.</p>
+					<p>JSONC is an even smaller patch.</p>
+					<p>TOML is tidy until it nests.</p>
+					<p>CSV is for cavemen.</p>
+					<p>XML is hell.</p>
+				</div>
 				<p>
 					LXON™ is the better alternative, developed solely by Nick Jasper.
 				</p>
 				<p>
 					Using minimal syntax, it introduces 2x the container types
 					and over 4x the value types compared to JSON.
-					It's refined to be compact (half a JSON file on average), 
+					It's refined to be compact (half a JSON file on average),
 					effortless to read/write, and immediately understood.
 				</p>
 				<p>
@@ -248,7 +246,7 @@
 
 		function updateDropdownVisibility() {
 			if (isTouch) return;
-			
+
 			const shouldShow = hoveringDoc || hoveringDropdown;
 			dropdownEl.style.visibility = `visible`;
 			if (shouldShow === showingDropdown) return;
@@ -446,6 +444,7 @@
 			]
 		}
 	</script>
+	<script src="rotator.js"></script>
 
 </body>
 
